@@ -23,7 +23,7 @@
 }
 </script>
 
-<style>
+<style scoped>
 .requestlist-container{
     position: absolute;
     display: flex;
@@ -60,7 +60,7 @@
 }
 .enrolledTutorialID{
     position: absolute;
-    top: 25px;
+    top: 43px;
     left: 15%;
     letter-spacing: 2px;
 }

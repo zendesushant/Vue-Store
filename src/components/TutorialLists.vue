@@ -3,7 +3,7 @@
                 <div v-if="$store.state.showDialog"  @click="$event.stopPropagation()"  class="course-overview">
                      <RouterView></RouterView>
                 </div>
-            <div v-for="t in tutorialsList" :key="t.id" class="tutorial-card">
+            <div v-for="t in filteredList()" :key="t.id" class="tutorial-card">
                     <p class="course-id">Course Id : <span>{{ t.id }}</span></p>
                     <p class="course">{{ t.name }}</p>
                     <p class="author">Author : <span>{{ t.author }}</span></p>
@@ -11,8 +11,6 @@
                     <router-link @click="updateTutorialDialogStatus" class="view-course-btn" :to="{ path: `/tutorials/${t.id}`}">View Course</router-link>
             </div>        
         </div>
-            
-         
 </template>
 
 <script>
@@ -87,8 +85,21 @@
                 type:'tutorialDialogStatusUpdate',
                 value:true
             })
-        }
-    },
+        },
+        filteredList() {
+            return this.tutorialsList.filter((tutorial) =>{
+                if(this.$store.getters.searchedTutorial === ''){
+                    return tutorial
+                }else{
+                    if( tutorial.author.toLowerCase().includes(this.$store.getters.searchedTutorial.toLowerCase()) ||
+                        tutorial.name.toLowerCase().includes(this.$store.getters.searchedTutorial.toLowerCase())
+                    ){
+                    return tutorial;
+                }
+                }
+            })
+         },
+        },
     watch:{
             $route(){
                 this.courseId = this.$route.params.id;
@@ -104,7 +115,7 @@
 }
 </script>
 
-<style>
+<style scoped>
     .tutorials-container{
         display: flex;
         gap: 80px;
@@ -112,7 +123,8 @@
         justify-content: center;
         position: relative;
         top: 100px;
-        width: 100%;
+        width: 93%;
+        left: 3%;
     }
     .tutorial-card{
         position: relative;
@@ -152,10 +164,10 @@
     }
     .view-course-btn{
         position: absolute;;
-        top: 350px;
+        top: 320px;
         padding: 15px;
         width: 150px;
-        right:55px;
+        right:40px;
         letter-spacing: 2px;
         border-radius: 30px;
         font-weight: bold;

@@ -4,13 +4,16 @@ import TheTutorial from './TheTutorial'
 import RequestLists from './RequestLists'
 import PageNotFound from './PageNotFound'
 import TutorialLists from './TutorialLists'
+import ContactForm from './ContactForm'
+import TheFeedback from './TheFeedback'
 let route = createRouter({
     history:createWebHistory(),
     routes:[
-        {path:'',redirect:'/landing'},
+        {path:'',redirect:'/tutorials'},
         {path:'/landing',component:TheLanding},
-        {path:'/requests',component:RequestLists},
-        {path:'/enroll',component:RequestLists},
+        {path:'/mycourses',component:RequestLists},
+        {path:'/contact',component:ContactForm},
+        {path:'/feedback',component:TheFeedback},
         {path:'/tutorials',component:TutorialLists,children:[
             {path:':id',component:TheTutorial
             }

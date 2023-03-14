@@ -1,6 +1,6 @@
 <template>
         <p>{{ getTutorialDescription }}</p>
-        <router-link to="/enroll" class="enroll-btn" type="button" @click="enroll">Enroll Now</router-link>
+        <router-link to="/mycourses" class="enroll-btn" type="button" @click="enroll">Enroll Now</router-link>
 </template>
 
 <script>
@@ -17,20 +17,23 @@
         },
         methods:{
             enroll(){
-                this.$store.dispatch({
-                    type:'tutorialDialogStatusUpdate',
-                    value:false
-                })
-                this.$store.dispatch({
-                    type:'enrolledCourse',
-                    value:this.$store.getters.getTutorial
-                })
+                setTimeout(()=>{
+                        this.$store.dispatch({
+                        type:'tutorialDialogStatusUpdate',
+                        value:false
+                        })
+                        this.$store.dispatch({
+                            type:'enrolledCourse',
+                            value:this.$store.getters.getTutorial
+                     })                
+                },3000)
+               
             }
         }
         }
 </script>
 
-<style>
+<style scoped>
     .course-dialog{
         
     }

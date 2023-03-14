@@ -1,6 +1,10 @@
 <template>
 <div v-if="$store.state.showDialog" class="backdrop" @click="updateDialogStatus">
+ 
 </div>
+<div v-if="$store.state.spinnerStatus" class="spinner">Loading</div>
+
+
 <TheHeader @click="updateDialogStatus"></TheHeader>
 <router-view>
 </router-view>
@@ -53,4 +57,10 @@ export default {
     transition: 4s width red 2s;
 }
 
+      .spinner{
+        color: white;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+      }
 </style>
