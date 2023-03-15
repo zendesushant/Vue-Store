@@ -6,18 +6,21 @@
 
 
 <TheHeader @click="updateDialogStatus"></TheHeader>
-<router-view>
+<router-view v-slot="{ Component }">
+  <transition  name="fade">
+    <component :is="Component" />
+  </transition>
 </router-view>
-
 </template>
 
 <script>
 import TheHeader from './components/TheHeader.vue'
-
+import TheSpinner from './components/TheSpinner.vue'
 export default {
   name: 'App',
   components: {
     TheHeader,
+    TheSpinner
   },
   methods:{
     updateDialogStatus(){
@@ -63,4 +66,12 @@ export default {
         width: 40px;
         position: absolute;
       }
+      .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

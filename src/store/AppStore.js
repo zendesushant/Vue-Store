@@ -59,7 +59,7 @@ let appStore = createStore({
             state.spinnerStatus = payload.value;
         },
         enrolledCourse(state,payload){
-
+                        console.log(payload.value)
                         state.enrolledCourse.push(payload.value)
                    
 
