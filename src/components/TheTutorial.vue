@@ -17,7 +17,6 @@
         },
         methods:{
             enroll(){
-                setTimeout(()=>{
                         this.$store.dispatch({
                         type:'tutorialDialogStatusUpdate',
                         value:false
@@ -26,7 +25,6 @@
                             type:'enrolledCourse',
                             value:this.$store.getters.getTutorial
                      })                
-                },3000)
                
             }
         }

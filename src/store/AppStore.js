@@ -59,12 +59,21 @@ let appStore = createStore({
             state.spinnerStatus = payload.value;
         },
         enrolledCourse(state,payload){
-                        console.log(payload.value)
-                        state.enrolledCourse.push(payload.value)
-                   
 
-               }
-            ,
+                if(state.enrolledCourse.length == 0){
+                    state.enrolledCourse.push(payload.value)
+                }else{
+                let result = state.enrolledCourse.filter((item)=>{
+                    return item.id === payload.value.id
+                })
+                   if(!result.length){
+                        state.enrolledCourse.push(payload.value)
+                   }else{
+                        alert('This Course Is Already Listed..')
+                   }
+                        
+                }       
+             },
         courseUpdate(state,payload){
             state.tutorial=payload.value[0];
         },
